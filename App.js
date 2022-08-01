@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import Main from './src/screens/Main/Main';
-import {store, persistor} from './redux/store';
+import Main from './src/Main/Main';
+import {store, persistor} from './src/store/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
 const App = () => {

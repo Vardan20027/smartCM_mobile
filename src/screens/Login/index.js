@@ -57,7 +57,11 @@ const LoginScreen = ({navigation}) => {
             {isSecureEntry ? <ShowPassIcon /> : <HidePassIcon />}
           </Pressable>
         </View>
-        <TouchableOpacity style={button}>
+        <TouchableOpacity
+          style={button}
+          onPress={() => {
+            navigation.navigate('Tab');
+          }}>
           <Text style={butText}>Login</Text>
         </TouchableOpacity>
         <View style={forgot}>

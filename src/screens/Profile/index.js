@@ -4,7 +4,7 @@ import {styles} from './style';
 import {Sizes} from '../../assets/RootStyle';
 import Calendar1Icon from '../../assets/icons/calendar1';
 
-const HomeScreen = ({navigation}) => {
+const ProfileScreen = ({navigation}) => {
   const {
     container,
     content,
@@ -64,4 +64,4 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default ProfileScreen;

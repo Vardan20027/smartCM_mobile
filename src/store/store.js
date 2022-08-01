@@ -1,7 +1,7 @@
 import {applyMiddleware, legacy_createStore as createStore} from 'redux';
 import reducer from './reducers/rootReducer';
 import {createLogicMiddleware} from 'redux-logic';
-import {logics} from './logic/index';
+import {logics} from './logic';
 const logicMiddleware = createLogicMiddleware(logics);
 const middleware = applyMiddleware(logicMiddleware);
 import {persistReducer, persistStore} from 'redux-persist';
