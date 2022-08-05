@@ -1,8 +1,20 @@
 import React, {useState} from 'react';
-import {Image, Pressable, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../assets/RootStyle';
+import CalendarComp from '../../components/Calendar';
+import Events from '../../components/Events';
+import Tasks from '../../components/Tasks';
 import Calendar1Icon from '../../assets/icons/calendar1';
+import Calendar2Icon from '../../assets/icons/calendar2';
+import All from '../../components/All';
 
 const HomeScreen = ({navigation}) => {
   const {
@@ -18,6 +30,7 @@ const HomeScreen = ({navigation}) => {
     date,
   } = styles();
   const [f, setF] = useState(3);
+  const [focused, setFocused] = useState(false);
   return (
     <View style={container}>
       <View style={content}>
@@ -49,16 +62,14 @@ const HomeScreen = ({navigation}) => {
             </Pressable>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            marginTop: Sizes.size30,
-          }}>
-          <Text style={date}> 20 May 2022</Text>
-          <TouchableOpacity>
-            <Calendar1Icon />
-          </TouchableOpacity>
+
+        <View style={{marginTop: Sizes.size10}}>
+          {f === 2 ? <Events /> : null}
         </View>
+        <View style={{marginTop: Sizes.size10}}>
+          {f === 1 ? <Tasks /> : null}
+        </View>
+        <View>{f === 3 ? <All /> : null}</View>
       </View>
     </View>
   );

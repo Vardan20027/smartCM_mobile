@@ -7,6 +7,7 @@ const styles = () => {
       flex: 1,
       alignItems: 'center',
       marginTop: Sizes.size6,
+      backgroundColor: '#F5F5F5',
     },
     content: {
       width: Sizes.size315,
@@ -54,6 +55,7 @@ const styles = () => {
       fontSize: Sizes.size14,
       color: '#1B3131',
       marginRight: Sizes.size210,
+      width: Sizes.size120,
     },
     butText: {
       fontFamily: Fonts.regular,
