@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import Events from '../Events';
 import {Sizes} from '../../assets/RootStyle';
-import {styles} from './style';
 import Checbox from '../Tasks/Checbox';
+import {TaskStyles} from '../Tasks/style';
 
 function All(props) {
-  const {container, content, data, desc, header} = styles();
+  const {container, content, data, desc, header, projSt} = TaskStyles();
   const DATA = [
     {
       id: 0,
@@ -134,13 +134,12 @@ function All(props) {
           <View
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: Sizes.size9,
-                height: Sizes.size16,
-                backgroundColor: `${item.item.color}`,
-              }}>
+              style={[
+                projSt,
+                {
+                  backgroundColor: `${item.item.color}`,
+                },
+              ]}>
               <Text style={desc}> {item.item.project}</Text>
             </View>
           </View>
@@ -153,13 +152,16 @@ function All(props) {
       style={{
         flex: 1,
         width: Sizes.size365,
+        marginTop: Sizes.size11,
       }}>
-      <FlatList
-        ListHeaderComponent={<Events />}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <View style={{marginTop: -22}}>
+        <FlatList
+          ListHeaderComponent={<Events />}
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
     </View>
   );
 }

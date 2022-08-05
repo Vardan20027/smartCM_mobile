@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {FlatList, Pressable, Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style';
+import {TaskStyles} from './style';
 import {Sizes} from '../../assets/RootStyle';
 import CalendarComp from '../Calendar';
 import Calendar2Icon from '../../assets/icons/calendar2';
@@ -9,7 +9,7 @@ import Checbox from './Checbox';
 function Tasks(props) {
   const [focused, setFocused] = useState(false);
   const {container, content, flatSt, date, data, desc, projSt, header} =
-    styles();
+    TaskStyles();
   const DATA = [
     {
       id: 0,

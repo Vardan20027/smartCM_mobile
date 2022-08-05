@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Fonts, Sizes} from '../../assets/RootStyle';
 
-const styles = () => {
+const TaskStyles = () => {
   return StyleSheet.create({
     container: {
       marginLeft: 'auto',
@@ -60,4 +60,4 @@ const styles = () => {
   });
 };
 
-export {styles};
+export {TaskStyles};

@@ -1,18 +1,27 @@
 import {StyleSheet} from 'react-native';
 import {Fonts, Sizes} from '../../assets/RootStyle';
 
-const styles = () => {
+const EventStyles = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
       width: Sizes.size315,
       height: Sizes.size111,
-      borderWidth: Sizes.size1,
       marginHorizontal: Sizes.size22,
-      borderColor: 'gray',
-      borderRadius: Sizes.size6,
       marginVertical: Sizes.size12,
+      backgroundColor: '#FCFCFC',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+
+      elevation: 5,
+
+      borderRadius: Sizes.size6,
     },
     content: {
       width: Sizes.size315,
@@ -59,4 +68,4 @@ const styles = () => {
   });
 };
 
-export {styles};
+export {EventStyles};

@@ -5,12 +5,13 @@ const styles = () => {
   return StyleSheet.create({
     container: {
       alignItems: 'center',
-      zIndex: -1,
-      position: 'relative',
+      zIndex: 1,
     },
     background: {
+      position: 'absolute',
       width: Sizes.size340,
       height: Sizes.size70,
+      bottom: Sizes.size3,
     },
     content: {
       flexDirection: 'row',

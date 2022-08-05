@@ -1,13 +1,14 @@
 import React from 'react';
 import {FlatList, Pressable, Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style';
+import {EventStyles} from './style';
 import {Sizes} from '../../assets/RootStyle';
 import CalendarComp from '../Calendar';
 import {useState} from 'react';
 import Calendar2Icon from '../../assets/icons/calendar2';
 
 function Events(props) {
-  const {container, content, date, data, desc, line, header} = styles();
+  const {container, content, date, data, desc, line, header} = EventStyles();
+
   const [focused, setFocused] = useState(false);
 
   const DATA = [
