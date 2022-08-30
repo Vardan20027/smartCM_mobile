@@ -1,85 +1,41 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Animated,
   ImageBackground,
   Pressable,
-  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
 import PlusIcon from '../../assets/icons/plusIcon';
-import {useState} from 'react';
 import {styles} from './AddStyle';
+import _ from 'lodash';
 import TasksIcon from '../../assets/icons/tasksIcon';
-import DoneTasksIcon from '../../assets/icons/doneTasksIcon';
+import EventsIcon from '../../assets/icons/eventsIcon';
 import PlaneIcon from '../../assets/icons/planeIcon';
-import PolygIcon from '../../assets/icons/polygon';
+
 import {Sizes} from '../../assets/RootStyle';
+import * as RootNavigation from '../../navigation/RootNavigation';
 
-function AddButton(props) {
-  const [focused, setFocused] = useState(false);
+function AddButton({
+  f,
+  tasksY,
+  doneTasksY,
+  doneTasksX,
+  tasksX,
+  handlePress,
+  planeX,
+  planeY,
+  rotation,
+  sizeStyle,
+  setOneRender,
+}) {
   const {pressable, button, secondaryButton} = styles();
-  const mode = useRef(new Animated.Value(0)).current;
-  const buttonSize = useRef(new Animated.Value(1)).current;
-
-  const handlePress = () => {
-    Animated.sequence([
-      Animated.timing(buttonSize, {
-        toValue: 0.95,
-        duration: 20,
-        useNativeDriver: false,
-      }),
-
-      Animated.timing(buttonSize, {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: false,
-      }),
-      Animated.timing(mode, {
-        toValue: mode._value === 0 ? 1 : 0,
-        useNativeDriver: false,
-      }),
-    ]).start();
-    setFocused(!focused);
-  };
-  const tasksX = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [175, 125],
-  });
-
-  const tasksY = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [720, 690],
-  });
-
-  const doneTasksX = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [175, 175],
-  });
-
-  const doneTasksY = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [720, 655],
-  });
-
-  const planeX = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [175, 225],
-  });
-
-  const planeY = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: [720, 690],
-  });
-
-  const rotation = mode.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '45deg'],
-  });
-
-  const sizeStyle = {
-    transform: [{scale: buttonSize}],
-  };
+  const [event, setEvent] = useState();
+  const [task, setTask] = useState();
+  const [leave, setLeave] = useState();
+  useEffect(() => {
+    setOneRender(true);
+  }, []);
   return (
     <View
       style={{
@@ -88,37 +44,72 @@ function AddButton(props) {
         justifyContent: 'center',
       }}>
       <Animated.View style={{position: 'absolute', left: tasksX, top: tasksY}}>
-        <View style={secondaryButton}>
+        <TouchableOpacity
+          onPress={() => {
+            setTask(!task);
+            RootNavigation.navigate('CreateTask', {task, setTask});
+            handlePress();
+          }}
+          style={secondaryButton}>
           <TasksIcon />
-        </View>
+        </TouchableOpacity>
       </Animated.View>
+
       <Animated.View
         style={{position: 'absolute', left: doneTasksX, top: doneTasksY}}>
-        <View style={secondaryButton}>
-          <DoneTasksIcon />
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            setEvent(!event);
+            RootNavigation.navigate('CreateEvent', {event, setEvent});
+            handlePress();
+          }}
+          style={secondaryButton}>
+          <EventsIcon />
+        </TouchableOpacity>
       </Animated.View>
       <Animated.View style={{position: 'absolute', left: planeX, top: planeY}}>
-        <View style={secondaryButton}>
+        <TouchableOpacity
+          onPress={() => {
+            setLeave(!leave);
+            RootNavigation.navigate('BookLeave', {leave, setLeave});
+            handlePress();
+          }}
+          style={secondaryButton}>
           <PlaneIcon />
-        </View>
+        </TouchableOpacity>
       </Animated.View>
-      <Pressable onPress={handlePress} style={pressable}>
-        <Animated.View style={[button, sizeStyle]}>
+
+      <Animated.View style={[button, sizeStyle]}>
+        <Pressable
+          onPress={() => {
+            setEvent(_.uniqueId());
+            setTask(_.uniqueId());
+            setLeave(_.uniqueId());
+            handlePress();
+          }}
+          style={pressable}>
           <ImageBackground
             source={
-              focused
-                ? require('../../assets/images/Polygon1.png')
-                : require('../../assets/images/Polygon2.png')
+              f
+                ? require('../../assets/images/Polygon2.png')
+                : require('../../assets/images/Polygon1.png')
             }
-            style={{width: Sizes.size122, height: Sizes.size122}}
+            style={{
+              width: Sizes.size100,
+              height: Sizes.size90,
+            }}
           />
+
           <Animated.View
-            style={{transform: [{rotate: rotation}], position: 'absolute'}}>
-            <PlusIcon iconColor={!focused ? '#F5F5F5' : '#347474'} />
+            style={{
+              transform: [{rotate: rotation}],
+              position: 'absolute',
+              bottom: Sizes.size40,
+            }}>
+            <PlusIcon iconColor={f ? '#F5F5F5' : '#347474'} />
           </Animated.View>
-        </Animated.View>
-      </Pressable>
+        </Pressable>
+      </Animated.View>
     </View>
   );
 }

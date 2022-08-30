@@ -3,19 +3,29 @@ import {Sizes} from '../../assets/RootStyle';
 
 const styles = () => {
   return StyleSheet.create({
+    tabbarSt: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      left: Sizes.size149,
+      bottom: Sizes.size90,
+      width: Sizes.size77,
+    },
     container: {
+      backgroundColor: 'transparent',
+      left: Sizes.size18,
+      bottom: Sizes.size10,
+      position: 'absolute',
       alignItems: 'center',
       zIndex: 1,
     },
     background: {
-      position: 'absolute',
       width: Sizes.size340,
       height: Sizes.size70,
-      bottom: Sizes.size3,
     },
     content: {
       flexDirection: 'row',
-      marginBottom: 10,
+      marginBottom: Sizes.size10,
     },
     container2: {
       flex: 1,

@@ -7,7 +7,7 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case GET_DATA_SUCCESS: {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         data: action.payload,

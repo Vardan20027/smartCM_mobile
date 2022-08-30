@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   Image,
   Pressable,
@@ -8,15 +8,230 @@ import {
   View,
 } from 'react-native';
 import {styles} from './style';
-import {Sizes} from '../../assets/RootStyle';
-import CalendarComp from '../../components/Calendar';
-import Events from '../../components/Events';
-import Tasks from '../../components/Tasks';
-import Calendar1Icon from '../../assets/icons/calendar1';
+import {Fonts, Sizes} from '../../assets/RootStyle';
+import Events from '../../components/Home/Events';
+import Tasks from '../../components/Home/Tasks';
+import All from '../../components/Home/All';
 import Calendar2Icon from '../../assets/icons/calendar2';
-import All from '../../components/All';
+import Header from '../../components/Home/Calendar/header';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = props => {
+  const EventsDATA = [
+    {
+      id: 0,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 19, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 1,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 25, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 2,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 2, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 3,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 11, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 4,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 30, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 5,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 14, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 6,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 24, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 7,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 29, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 8,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 26, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 9,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 27, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+    {
+      id: 10,
+      title: 'Meeting with team',
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      date: 'May 29, 2022',
+      duration: '12:00 - 15:00',
+      location: 'Meeting room 306',
+    },
+  ];
+  const TasksDATA = [
+    {
+      id: 11,
+      title: 'Create Task',
+      date: 'May 19, 2022',
+      duration: '15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+    {
+      id: 12,
+      title: 'Research Dashboard',
+      date: 'May 2, 2022',
+      duration: ' 15 minute',
+      project: 'New City',
+      color: '#FF8A9F',
+    },
+    {
+      id: 13,
+      title: 'Feedbacks',
+      date: 'May 26, 2022',
+      duration: ' 15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+    {
+      id: 14,
+      title: 'Sign up',
+      date: 'May 12, 2022',
+      duration: ' 15 minute',
+      project: 'Mapplo',
+      color: '#39B9CE',
+    },
+    {
+      id: 15,
+      title: 'Research Dashboard',
+      date: 'May 15, 2022',
+      duration: ' 15 minute',
+      project: 'New City',
+      color: '#FF8A9F',
+    },
+    {
+      id: 16,
+      title: 'Sign up',
+      date: 'May 31, 2022',
+      duration: ' 15 minute',
+      project: 'Mapplo',
+      color: '#39B9CE',
+    },
+    {
+      id: 17,
+      title: 'Create Task',
+      date: 'May 27, 2022',
+      duration: ' 15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+    {
+      id: 18,
+      title: 'Feedbacks',
+      date: 'May 7, 2022',
+      duration: ' 15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+    {
+      id: 19,
+      title: 'Sign up',
+      date: 'May 27, 2022',
+      duration: ' 15 minute',
+      project: 'Mapplo',
+      color: '#39B9CE',
+    },
+    {
+      id: 20,
+      title: 'Create Task',
+      date: 'May 18, 2022',
+      duration: ' 15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+    {
+      id: 21,
+      title: 'Sign up',
+      date: 'May 24, 2022',
+      duration: ' 15 minute',
+      project: 'Mapplo',
+      color: '#39B9CE',
+    },
+    {
+      id: 22,
+      title: 'Research Dashboard',
+      date: 'May 27, 2022',
+      duration: ' 15 minute',
+      project: 'New City',
+      color: '#FF8A9F',
+    },
+    {
+      id: 23,
+      title: 'Sign up',
+      date: 'May 29, 2022',
+      duration: ' 15 minute',
+      project: 'Mapplo',
+      color: '#39B9CE',
+    },
+    {
+      id: 24,
+      title: 'Feedbacks',
+      date: 'May 27, 2022',
+      duration: ' 15 minute',
+      project: 'Bob AI',
+      color: '#38A98E',
+    },
+  ];
+  const [focused, setFocused] = useState(false);
   const {
     container,
     content,
@@ -27,10 +242,8 @@ const HomeScreen = ({navigation}) => {
     pressable2,
     butText,
     butText2,
-    date,
   } = styles();
   const [f, setF] = useState(3);
-  const [focused, setFocused] = useState(false);
   return (
     <View style={container}>
       <View style={content}>
@@ -63,13 +276,33 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
 
-        <View style={{marginTop: Sizes.size10}}>
-          {f === 2 ? <Events /> : null}
+        <Header focused={focused} setFocused={setFocused} />
+        <View style={{height: Sizes.size390}}>
+          {f === 2 ? (
+            <Events
+              focused={focused}
+              {...props}
+              EventsDATA={EventsDATA}
+              TasksDATA={TasksDATA}
+            />
+          ) : null}
+          {f === 3 ? (
+            <All
+              focused={focused}
+              {...props}
+              EventsDATA={EventsDATA}
+              TasksDATA={TasksDATA}
+            />
+          ) : null}
+          {f === 1 ? (
+            <Tasks
+              focused={focused}
+              {...props}
+              EventsDATA={EventsDATA}
+              TasksDATA={TasksDATA}
+            />
+          ) : null}
         </View>
-        <View style={{marginTop: Sizes.size10}}>
-          {f === 1 ? <Tasks /> : null}
-        </View>
-        <View>{f === 3 ? <All /> : null}</View>
       </View>
     </View>
   );

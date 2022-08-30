@@ -26,7 +26,7 @@ const styles = () => {
       marginRight: Sizes.size153,
     },
     selectView: {
-      width: Sizes.size316,
+      width: Sizes.size310,
       flexDirection: 'row',
       backgroundColor: '#347474',
       marginTop: Sizes.size30,
@@ -35,6 +35,7 @@ const styles = () => {
     pressable: {
       height: Sizes.size28,
       backgroundColor: '#347474',
+      borderRadius: Sizes.size4,
       justifyContent: 'center',
       alignItems: 'center',
     },

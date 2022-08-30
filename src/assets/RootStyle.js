@@ -8,6 +8,7 @@ for (let i = 1; i < 800; i++) {
 export const Fonts = {
   thin: 'Montserrat-Thin',
   regular: 'Montserrat-Regular',
+  medium: 'Montserrat-Medium',
   bold: 'Montserrat-SemiBold',
   nunito: 'Nunito-SemiBold',
 };
