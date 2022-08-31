@@ -6,11 +6,13 @@ import NotificationsScreen from '../screens/Notification';
 import ActivityScreen from '../screens/Activity';
 import ProfileScreen from '../screens/Profile';
 import TabBar from '../components/TabBar/tabBar';
-import AddButton from '../components/AddButton/AddButton';
 import CreateTask from '../screens/CreateTask';
 import CreateEvent from '../screens/CreateEvent';
 import BookLeave from '../screens/BookLeave';
 import UpdateTask from '../screens/UpdateTask';
+import HistoryTasks from '../screens/Profile/History Tasks';
+import HistoryEvents from '../screens/Profile/History Events';
+import Projects from '../screens/Profile/Projects';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,6 +33,9 @@ export default function TabNav() {
         <Tab.Screen name="UpdateTask" component={UpdateTask} />
         <Tab.Screen name="CreateEvent" component={CreateEvent} />
         <Tab.Screen name="BookLeave" component={BookLeave} />
+        <Tab.Screen name="History Tasks" component={HistoryTasks} />
+        <Tab.Screen name="History Events" component={HistoryEvents} />
+        <Tab.Screen name="Projects" component={Projects} />
       </Tab.Navigator>
     </>
   );

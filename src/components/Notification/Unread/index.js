@@ -65,7 +65,11 @@ function Unread({
           </View>
         </View>
         <View style={{position: 'absolute', right: 5}}>
-          <UnreadIcon />
+          <UnreadIcon
+            iconColor={'#347474'}
+            iconWidth={Sizes.size8}
+            iconHeight={Sizes.size8}
+          />
         </View>
       </TouchableOpacity>
     </>

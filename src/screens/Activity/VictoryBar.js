@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {VictoryBar, VictoryAxis} from 'victory-native';
-import {Sizes} from '../../assets/RootStyle';
+import {Fonts, Sizes} from '../../assets/RootStyle';
 
 function Victory(props) {
   const data = [
@@ -19,6 +19,7 @@ function Victory(props) {
         <View style={{position: 'relative'}}>
           <VictoryBar
             height={Sizes.size170}
+            animate
             style={{
               data: {fill: '#83B7AD', width: Sizes.size18},
             }}
@@ -34,7 +35,7 @@ function Victory(props) {
             style={{
               axis: {stroke: 'transparent'},
               tickLabels: {
-                fontFamily: 'Montserrat',
+                fontFamily: Fonts.regular,
                 fontStyle: 'normal',
                 fontWeight: '500',
                 fontSize: Sizes.size16,

@@ -6,9 +6,9 @@ import {
   VictoryLine,
   VictoryScatter,
 } from 'victory-native';
-import {Fonts, Sizes} from '../../assets/RootStyle';
+import {Fonts, Sizes} from '../../../assets/RootStyle';
 
-function VictoryProgress(props) {
+function VictoryTasks(props) {
   const data = [
     {x: 1, y: 26.5},
     {x: 1.3, y: 26.45},
@@ -33,7 +33,7 @@ function VictoryProgress(props) {
           <VictoryAxis
             crossAxis
             style={{
-              axis: {stroke: 'none'},
+              axis: {stroke: '#334E68'},
               tickLabels: {
                 fontFamily: Fonts.regular,
                 fontStyle: 'normal',
@@ -49,8 +49,8 @@ function VictoryProgress(props) {
             dependentAxis
             crossAxis
             style={{
-              axis: {stroke: 'none'},
-              grid: {stroke: '#E4E4E4'},
+              axis: {stroke: '#334E68'},
+              grid: {stroke: '#334E68'},
               tickLabels: {
                 fontFamily: Fonts.regular,
                 fontStyle: 'normal',
@@ -84,20 +84,8 @@ function VictoryProgress(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: Sizes.size350,
+    width: Sizes.size375,
     height: Sizes.size280,
-    backgroundColor: '#f5f5f5',
-    marginTop: Sizes.size20,
-    borderRadius: Sizes.size10,
-    marginBottom: Sizes.size20,
-    shadowColor: 'gray',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 });
-export default VictoryProgress;
+export default VictoryTasks;

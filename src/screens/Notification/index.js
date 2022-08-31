@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from './style';
-import {Sizes} from '../../assets/RootStyle';
+import {Fonts, Sizes} from '../../assets/RootStyle';
 import Unread from '../../components/Notification/Unread';
 import Read from '../../components/Notification/Read';
 import UnreadIcon from '../../assets/icons/unreadIcon';
@@ -254,7 +254,7 @@ const NotificationsScreen = props => {
               <View style={{margin: Sizes.size10}}>
                 <EmptyNotifIcon />
               </View>
-              <Text>No notifications</Text>
+              <Text style={{fontFamily: Fonts.regular}}>No notifications</Text>
             </View>
           ) : null}
           <FlatList
