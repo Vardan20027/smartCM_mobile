@@ -64,6 +64,7 @@ function VictoryProgress(props) {
           />
           <VictoryLine
             data={data}
+            animate
             style={{
               data: {stroke: '#347474'},
               parent: {border: '2px solid #347474'},

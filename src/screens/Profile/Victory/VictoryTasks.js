@@ -1,49 +1,62 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {
-  VictoryChart,
   VictoryAxis,
-  VictoryLine,
-  VictoryScatter,
+  VictoryChart,
+  VictoryStack,
+  VictoryArea,
 } from 'victory-native';
 import {Fonts, Sizes} from '../../../assets/RootStyle';
 
-function VictoryTasks(props) {
+function VictoryTask(props) {
   const data = [
-    {x: 1, y: 26.5},
-    {x: 1.3, y: 26.45},
-    {x: 1.5, y: 26.7},
-    {x: 1.58, y: 26.75},
-    {x: 2.1, y: 27},
-    {x: 3, y: 27.8},
-    {x: 3.48, y: 26.9},
-    {x: 3.69, y: 26.73},
-    {x: 4.3, y: 26.2},
-    {x: 4.7, y: 26.42},
-    {x: 4.78, y: 26.46},
-    {x: 5, y: 26.45},
-    {x: 5.5, y: 26.7},
-    {x: 6, y: 26.1},
-    {x: 7, y: 27},
+    {quarter: 1, y: 2.5, k: -1},
+    {quarter: 1.4, y: 3.6, k: -1},
+    {quarter: 2, y: 1.6, k: 2.1},
+    {quarter: 2.4, y: 2.6, k: -2},
+    {quarter: 2.8, y: 1.3, k: 2.1},
+    {quarter: 3, y: 2.4, k: 2},
+    {quarter: 3.2, y: 2.4, k: 1.9},
+    {quarter: 3.4, y: 1.1, k: 3.8},
+    {quarter: 3.8, y: 1.8, k: 2},
+    {quarter: 4, y: 2.8, k: 1.9},
+    {quarter: 4.3, y: 2, k: 1},
+    {quarter: 4.6, y: 3.2, k: 1},
+    {quarter: 4.8, y: 3.4, k: 0.4},
+    {quarter: 5, y: 3, k: 0.9},
+    {quarter: 5.2, y: 2.8, k: 0},
+    {quarter: 5.4, y: 2.6, k: 0},
+    {quarter: 5.6, y: 2.5, k: 0},
+    {quarter: 5.9, y: 1.1, k: 4.2},
+    {quarter: 6.2, y: 2.2, k: 4.3},
+    {quarter: 6.4, y: 2.2, k: 4.4},
+    {quarter: 6.5, y: 1.9, k: 3.3},
+    {quarter: 6.7, y: 2, k: 3},
+    {quarter: 6.9, y: 2, k: 3.7},
+    {quarter: 7.5, y: 1, k: 7},
   ];
   return (
     <>
-      <View style={styles.container}>
-        <VictoryChart minDomain={{x: 0.8, y: 0}} domain={{y: [25, 29]}}>
+      <View>
+        <VictoryChart
+          width={Sizes.si340}
+          height={Sizes.size280}
+          domain={{y: [1, 7]}}>
           <VictoryAxis
             crossAxis
             style={{
               axis: {stroke: '#334E68'},
+              grid: {stroke: '#334E68'},
               tickLabels: {
                 fontFamily: Fonts.regular,
                 fontStyle: 'normal',
                 fontWeight: '500',
-                fontSize: Sizes.size11,
-                lineHeight: Sizes.size13,
-                fill: '#616062',
+                fontSize: Sizes.size16,
+                lineHeight: Sizes.size20,
+                fill: '#B8C0CC',
               },
             }}
-            tickValues={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+            tickValues={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', ' ']}
           />
           <VictoryAxis
             dependentAxis
@@ -55,37 +68,33 @@ function VictoryTasks(props) {
                 fontFamily: Fonts.regular,
                 fontStyle: 'normal',
                 fontWeight: '500',
-                fontSize: Sizes.size11,
-                lineHeight: Sizes.size13,
-                fill: '#616062',
+                fontSize: Sizes.size16,
+                lineHeight: Sizes.size20,
+                fill: '#B8C0CC',
               },
             }}
-            tickFormat={y => `${y}`.substring(0, 2)}
+            tickValues={['0', '10', '20', '30', '40', '50', '60']}
           />
-          <VictoryLine
-            data={data}
-            style={{
-              data: {stroke: '#347474'},
-              parent: {border: '2px solid #347474'},
-            }}
-            interpolation="cardinal"
-          />
-
-          <VictoryScatter
-            style={{data: {fill: '#347474', stroke: '#fff', strokeWidth: 3}}}
-            size={Sizes.size8}
-            data={[{x: 3, y: 27.8}]}
-          />
+          <VictoryStack colorScale={['#EE9087', '#83B7AD']}>
+            <VictoryArea
+              style={{data: {stroke: '#D95353', strokeWidth: Sizes.size2}}}
+              data={data}
+              interpolation="natural"
+              x="quarter"
+              y="y"
+            />
+            <VictoryArea
+              style={{data: {stroke: '#347474', strokeWidth: Sizes.size2}}}
+              data={data}
+              interpolation="natural"
+              x="quarter"
+              y="k"
+            />
+          </VictoryStack>
         </VictoryChart>
       </View>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: Sizes.size375,
-    height: Sizes.size280,
-  },
-});
-export default VictoryTasks;
+export default VictoryTask;

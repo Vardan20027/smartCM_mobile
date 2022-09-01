@@ -1,79 +1,3 @@
-// import React from 'react';
-// import {View, StyleSheet} from 'react-native';
-// import {VictoryBar, VictoryAxis} from 'victory-native';
-// import {Fonts, Sizes} from '../../assets/RootStyle';
-//
-// function VictoryLeave(props) {
-//   const data = [
-//     {quarter: 1, earnings: 850},
-//     {quarter: 2, earnings: 850},
-//     {quarter: 3, earnings: 850},
-//     {quarter: 4, earnings: 850},
-//     {quarter: 5, earnings: 850},
-//     {quarter: 6, earnings: 850},
-//     {quarter: 7, earnings: 850},
-//     {quarter: 8, earnings: 850},
-//     {quarter: 9, earnings: 850},
-//     {quarter: 10, earnings: 850},
-//     {quarter: 11, earnings: 850},
-//     {quarter: 12, earnings: 850},
-//   ];
-//   return (
-//     <>
-//       <View style={styles.container}>
-//         <View style={{position: 'relative'}}>
-//           <VictoryBar
-//             height={Sizes.size220}
-//             style={{
-//               data: {fill: '#F4C584', width: Sizes.size7},
-//             }}
-//             cornerRadius={{top: () => Sizes.size4, bottom: () => Sizes.size4}}
-//             data={data}
-//             x="quarter"
-//             y="earnings"
-//           />
-//         </View>
-//         <View style={{position: 'absolute', bottom: Sizes.size3}}>
-//           <VictoryAxis
-//             tickValues={[
-//               'J',
-//               'F',
-//               'M',
-//               'A',
-//               'M',
-//               'J',
-//               'J',
-//               'A',
-//               'S',
-//               'O',
-//               'N',
-//               'D',
-//             ]}
-//             style={{
-//               axis: {stroke: 'transparent'},
-//               tickLabels: {
-//                 fontFamily: Fonts.regular,
-//                 fontStyle: 'normal',
-//                 fontWeight: '500',
-//                 fontSize: Sizes.size16,
-//                 lineHeight: Sizes.size20,
-//                 fill: '#616062',
-//               },
-//             }}
-//           />
-//         </View>
-//       </View>
-//     </>
-//   );
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     borderRadius: Sizes.size10,
-//   },
-// });
-// export default VictoryLeave;
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {
@@ -146,6 +70,7 @@ function VictoryLeave(props) {
             <VictoryStack colorScale={['#EF988F', '#92BEFA', '#83B7AD']}>
               <VictoryBar
                 data={data}
+                animate
                 x="quarter"
                 y="y"
                 style={{data: {width: Sizes.size7}}}
@@ -156,6 +81,7 @@ function VictoryLeave(props) {
               />
               <VictoryBar
                 data={data}
+                animate
                 style={{data: {width: Sizes.size7}}}
                 x="quarter"
                 y="z"
@@ -166,6 +92,7 @@ function VictoryLeave(props) {
               />
               <VictoryBar
                 data={data}
+                animate
                 x="quarter"
                 y="k"
                 style={{data: {width: Sizes.size7}}}
