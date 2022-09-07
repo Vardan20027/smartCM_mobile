@@ -5,7 +5,7 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
 
-function DayOffBtSheet({dayOff, setDayOff, dayOffLead, setLeadAction}) {
+function DayOffBtSheet({dayOff, setDayOff, dayOffLead, leadActionID, func}) {
   const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
@@ -35,7 +35,11 @@ function DayOffBtSheet({dayOff, setDayOff, dayOffLead, setLeadAction}) {
           snapPoints={snapPoints}
           ref={sheetRef}
           index={dayOffLead ? 1 : 0}
-          onChange={handleSheetChanges}>
+          onChange={handleSheetChanges}
+          enablePanDownToClose={true}
+          onClose={() => {
+            setDayOff(!dayOff);
+          }}>
           <View style={content}>
             <TouchableOpacity style={close} onPress={() => setDayOff(!dayOff)}>
               <CloseIcon />
@@ -66,7 +70,10 @@ function DayOffBtSheet({dayOff, setDayOff, dayOffLead, setLeadAction}) {
                   <TouchableOpacity
                     style={leadAccept}
                     onPress={() => {
-                      setLeadAction('accepted');
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'accepted',
+                      });
                       setDayOff(!dayOff);
                     }}>
                     <Text style={leadText}>Accept</Text>
@@ -74,7 +81,10 @@ function DayOffBtSheet({dayOff, setDayOff, dayOffLead, setLeadAction}) {
                   <TouchableOpacity
                     style={leadDecline}
                     onPress={() => {
-                      setLeadAction('declined');
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'declined',
+                      });
                       setDayOff(!dayOff);
                     }}>
                     <Text style={leadText}>Cancel</Text>

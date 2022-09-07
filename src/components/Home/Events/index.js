@@ -1,15 +1,8 @@
-import React, {useState, useRef} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useRef} from 'react';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {EventStyles} from './style';
 import {Sizes} from '../../../assets/RootStyle';
 import CalendarComp from '../Calendar';
-import Calendar2Icon from '../../../assets/icons/calendar2';
 
 function Events(props) {
   const ref = useRef(null);
@@ -19,7 +12,7 @@ function Events(props) {
   const renderItem = ({item}) => (
     <>
       <View style={container}>
-        <View style={line} />
+        <View style={[line, {backgroundColor: item.color}]} />
         <View style={content}>
           <Text style={header}>{item.title}</Text>
           <Text style={desc}> {item.description}</Text>

@@ -1,18 +1,11 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
 
-function HourlyBtSheet({
-  hourly,
-  setHourly,
-  hourlyLead,
-  setLeadAction,
-  func,
-  leadActionID,
-}) {
+function HourlyBtSheet({hourly, setHourly, hourlyLead, func, leadActionID}) {
   const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
@@ -43,7 +36,11 @@ function HourlyBtSheet({
           snapPoints={snapPoints}
           ref={sheetRef}
           index={hourlyLead ? 1 : 0}
-          onChange={handleSheetChanges}>
+          onChange={handleSheetChanges}
+          enablePanDownToClose={true}
+          onClose={() => {
+            setHourly(!hourly);
+          }}>
           <View style={content}>
             <TouchableOpacity style={close} onPress={() => setHourly(!hourly)}>
               <CloseIcon />
@@ -72,14 +69,17 @@ function HourlyBtSheet({
                 text ever since the
               </Text>
             </View>
-            {hourlyLead ? (
+            {hourlyLead !== null ? (
               <View>
                 <TextInput style={leadInput} placeholder={'Add comment'} />
                 <View style={leadActions}>
                   <TouchableOpacity
                     style={leadAccept}
                     onPress={() => {
-                      func({leadActionID: leadActionID, leadAction: 'accept'});
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'accepted',
+                      });
                       setHourly(!hourly);
                     }}>
                     <Text style={leadText}>Accept</Text>

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -54,7 +54,7 @@ function All(props) {
       </View>
     ) : (
       <View style={container}>
-        <View style={line} />
+        <View style={[line, {backgroundColor: item.color}]} />
         <View style={content}>
           <Text style={header}>{item.title}</Text>
           <Text style={desc}> {item.description}</Text>

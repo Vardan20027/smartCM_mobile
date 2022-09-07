@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {VictoryPie, VictoryLabel, VictoryLegend} from 'victory-native';
+import {VictoryLabel, VictoryPie} from 'victory-native';
 import Svg from 'react-native-svg';
 import {Fonts, Sizes} from '../../../assets/RootStyle';
 
@@ -12,8 +12,8 @@ function VictoryEvents(props) {
           position: 'absolute',
           height: Sizes.size380,
           width: Sizes.size380,
-          marginLeft: Sizes.size20,
-          marginVertical: Sizes.size60,
+          left: Sizes.size10,
+          top: Sizes.size10,
         }}>
         <Svg viewBox="0 0 600 600">
           <VictoryPie
@@ -82,19 +82,19 @@ function VictoryEvents(props) {
             text="Item"
           />
 
-          <VictoryLegend
-            x={Sizes.size400}
-            y={Sizes.size130}
-            orientation="vertical"
-            rowGutter={Sizes.size15}
-            data={[
-              {name: 'Events', symbol: {fill: '#19B3A6'}},
-              {name: 'Trainings', symbol: {fill: '#92BEFA'}},
-              {name: 'Meeting', symbol: {fill: '#F4C584'}},
-              {name: 'Teambulding', symbol: {fill: '#EF988F'}},
-            ]}
-            standalone={false}
-          />
+          {/*<VictoryLegend*/}
+          {/*  x={Sizes.size400}*/}
+          {/*  y={Sizes.size130}*/}
+          {/*  orientation="vertical"*/}
+          {/*  rowGutter={Sizes.size15}*/}
+          {/*  data={[*/}
+          {/*    {name: 'Events', symbol: {fill: '#19B3A6'}},*/}
+          {/*    {name: 'Trainings', symbol: {fill: '#92BEFA'}},*/}
+          {/*    {name: 'Meeting', symbol: {fill: '#F4C584'}},*/}
+          {/*    {name: 'Teambulding', symbol: {fill: '#EF988F'}},*/}
+          {/*  ]}*/}
+          {/*  standalone={false}*/}
+          {/*/>*/}
         </Svg>
       </View>
     </>

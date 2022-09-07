@@ -4,9 +4,14 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
-import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
-function RemotelyBtSheet({remotely, setRemotely, remotelyLead, setLeadAction}) {
+function RemotelyBtSheet({
+  remotely,
+  setRemotely,
+  remotelyLead,
+  func,
+  leadActionID,
+}) {
   const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
@@ -36,7 +41,11 @@ function RemotelyBtSheet({remotely, setRemotely, remotelyLead, setLeadAction}) {
           snapPoints={snapPoints}
           ref={sheetRef}
           index={remotelyLead ? 1 : 0}
-          onChange={handleSheetChanges}>
+          onChange={handleSheetChanges}
+          enablePanDownToClose={true}
+          onClose={() => {
+            setRemotely(!remotely);
+          }}>
           <View style={content}>
             <TouchableOpacity
               style={close}
@@ -73,7 +82,10 @@ function RemotelyBtSheet({remotely, setRemotely, remotelyLead, setLeadAction}) {
                   <TouchableOpacity
                     style={leadAccept}
                     onPress={() => {
-                      setLeadAction('accepted');
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'accepted',
+                      });
                       setRemotely(!remotely);
                     }}>
                     <Text style={leadText}>Accept</Text>
@@ -81,7 +93,10 @@ function RemotelyBtSheet({remotely, setRemotely, remotelyLead, setLeadAction}) {
                   <TouchableOpacity
                     style={leadDecline}
                     onPress={() => {
-                      setLeadAction('declined');
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'declined',
+                      });
                       setRemotely(!remotely);
                     }}>
                     <Text style={leadText}>Cancel</Text>

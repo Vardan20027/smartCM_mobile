@@ -1,13 +1,20 @@
 import React, {useCallback, useMemo, useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
 import {Sizes} from '../../../../assets/RootStyle';
 
-function NotifVacationBtSheet({vacation, setVacation}) {
-  const snapPoints = useMemo(() => ['45%', '50%', '70%', '80%', '100%'], []);
+function NotifVacationBtSheet({
+  vacation,
+  setVacation,
+  func,
+  vacationLead,
+  setLeadAction,
+  leadActionID,
+}) {
+  const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
     // console.log('handleSheetChanges', index);
@@ -23,6 +30,11 @@ function NotifVacationBtSheet({vacation, setVacation}) {
     comView,
     comment,
     name,
+    leadInput,
+    leadActions,
+    leadAccept,
+    leadDecline,
+    leadText,
   } = styles();
   return (
     <GestureHandlerRootView style={page}>
@@ -30,8 +42,12 @@ function NotifVacationBtSheet({vacation, setVacation}) {
         <BottomSheet
           snapPoints={snapPoints}
           ref={sheetRef}
-          index={0}
-          onChange={handleSheetChanges}>
+          index={vacationLead ? 1 : 0}
+          onChange={handleSheetChanges}
+          enablePanDownToClose={true}
+          onClose={() => {
+            setVacation(!vacation);
+          }}>
           <View style={content}>
             <TouchableOpacity
               style={close}
@@ -52,13 +68,44 @@ function NotifVacationBtSheet({vacation, setVacation}) {
               <Text style={name}>24 May 2022</Text>
             </View>
             <View style={comView}>
-              <Text style={employee}>Comment:</Text>
+              <Text style={employee}>
+                {vacationLead ? 'Description' : 'Comment:'}
+              </Text>
               <Text style={comment}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the
               </Text>
             </View>
+            {vacationLead ? (
+              <View>
+                <TextInput style={leadInput} placeholder={'Add comment'} />
+                <View style={leadActions}>
+                  <TouchableOpacity
+                    style={leadAccept}
+                    onPress={() => {
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'accepted',
+                      });
+                      setVacation(!vacation);
+                    }}>
+                    <Text style={leadText}>Accept</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={leadDecline}
+                    onPress={() => {
+                      func({
+                        leadActionID: leadActionID,
+                        leadAction: 'declined',
+                      });
+                      setVacation(!vacation);
+                    }}>
+                    <Text style={leadText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : null}
           </View>
         </BottomSheet>
       </View>

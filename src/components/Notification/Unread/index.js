@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../../assets/RootStyle';
 import UnreadIcon from '../../../assets/icons/unreadIcon';
-import EmptyNotifIcon from '../../../assets/icons/emptyNotifIcon';
 
 function Unread({
   item,
@@ -12,13 +11,10 @@ function Unread({
   hourly,
   setHourlyLead,
   leadActionID,
-  setLeadActionID,
-  leadAction,
-  remotelyLead,
+  func,
   setRemotelyLead,
-  vacationLead,
+  setLeadActionID,
   setVacationLead,
-  dayOffLead,
   setDayOffLead,
   setHourly,
   remotely,
@@ -28,7 +24,6 @@ function Unread({
 }) {
   const {container, text, image} = styles();
   const handlePress = item => {
-    console.log('item1', item);
     if (item.type === 'Hourly leave') {
       setHourly(!hourly);
     } else if (item.type === 'Day off') {
@@ -47,9 +42,10 @@ function Unread({
     setRemotelyLead(item.role);
     item.read = true;
 
-    if (item.role === 'Team-lead') {
-      console.log(leadActionID);
+    if (item.role) {
       setLeadActionID(item.id);
+
+      console.log('Selected id:', item.id);
     }
   };
 

@@ -1,17 +1,9 @@
 import React, {useState} from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, Pressable, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {Fonts, Sizes} from '../../assets/RootStyle';
 import Unread from '../../components/Notification/Unread';
 import Read from '../../components/Notification/Read';
-import UnreadIcon from '../../assets/icons/unreadIcon';
 import DayOffBtSheet from '../../components/BottomSheet/NotificationBtSheets/Day off';
 import HourlyBtSheet from '../../components/BottomSheet/NotificationBtSheets/Hourly';
 import RemotelyBtSheet from '../../components/BottomSheet/NotificationBtSheets/Work remotely';
@@ -145,18 +137,26 @@ const NotificationsDATA = [
 ];
 const NotificationsScreen = props => {
   const [arr, setArr] = useState(NotificationsDATA);
-  console.log(1, arr[0]);
+  const [leadAction, setLeadAction] = useState('');
+  const [leadActionID, setLeadActionID] = useState();
+
   const func = el => {
     const newArr = NotificationsDATA.map(object => {
       if (object.id === el.leadActionID) {
-        // 👇️ change value of name property
         return {...object, action: el.leadAction};
       }
       return object;
     });
     setArr(newArr);
   };
-  console.log(2, arr[0]);
+  console.log(
+    arr[0].id,
+    arr[0].action,
+    arr[2].id,
+    arr[2].action,
+    arr[5].id,
+    arr[5].action,
+  );
 
   const [focused, setFocused] = useState(1);
   const [hourly, setHourly] = useState(false);
@@ -168,8 +168,7 @@ const NotificationsScreen = props => {
   const [vacation, setVacation] = useState(false);
   const [vacationLead, setVacationLead] = useState();
   const [i, setI] = useState(false);
-  const [leadAction, setLeadAction] = useState('');
-  const [leadActionID, setLeadActionID] = useState();
+
   const {
     container,
     text,
@@ -187,6 +186,7 @@ const NotificationsScreen = props => {
       return (
         <Unread
           item={item}
+          func={func}
           hourly={hourly}
           hourlyLead={hourlyLead}
           setHourly={setHourly}
@@ -312,6 +312,8 @@ const NotificationsScreen = props => {
       <View style={btSheet}>
         {dayOff ? (
           <DayOffBtSheet
+            func={func}
+            leadActionID={leadActionID}
             setDayOff={setDayOff}
             dayOff={dayOff}
             dayOffLead={dayOffLead}
@@ -330,6 +332,8 @@ const NotificationsScreen = props => {
         ) : null}
         {remotely ? (
           <RemotelyBtSheet
+            func={func}
+            leadActionID={leadActionID}
             setRemotely={setRemotely}
             remotely={remotely}
             setLeadAction={setLeadAction}
@@ -338,6 +342,8 @@ const NotificationsScreen = props => {
         ) : null}
         {vacation ? (
           <NotifVacationBtSheet
+            func={func}
+            leadActionID={leadActionID}
             setVacation={setVacation}
             vacation={vacation}
             vacationLead={vacationLead}

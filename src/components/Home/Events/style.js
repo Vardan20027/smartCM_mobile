@@ -27,7 +27,6 @@ const EventStyles = () => {
     },
     line: {
       width: Sizes.size6,
-      backgroundColor: '#F4C584',
       borderBottomLeftRadius: Sizes.size6,
       borderTopLeftRadius: Sizes.size6,
     },

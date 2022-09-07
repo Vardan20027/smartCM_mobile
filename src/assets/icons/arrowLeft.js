@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
-import {Sizes} from '../RootStyle';
 
 function SvgComponent(props) {
+  const {iconWidth, iconHeight, iconColor, strokeWidth} = props;
   return (
     <Svg
       width={iconWidth}

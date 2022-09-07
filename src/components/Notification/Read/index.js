@@ -1,22 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../../assets/RootStyle';
 
 function Read({
   item,
+  leadAction,
   setVacation,
   vacation,
   hourly,
-  leadActionID,
-  leadAction,
-  hourlyLead,
   setHourlyLead,
-  remotelyLead,
   setRemotelyLead,
-  vacationLead,
   setVacationLead,
-  dayOffLead,
   setDayOffLead,
   setHourly,
   remotely,
@@ -26,7 +21,7 @@ function Read({
 }) {
   const {container, text, image} = styles();
   const handlePress = item => {
-    console.log('i', item);
+    console.log('i', item.action);
     if (item.type === 'Hourly leave') {
       setHourly(!hourly);
       setHourlyLead(null);
@@ -42,6 +37,17 @@ function Read({
     } else {
       alert('The type is not defined');
     }
+    if (item.action === 'send') {
+      setHourlyLead(item.role);
+      setDayOffLead(item.role);
+      setVacationLead(item.role);
+      setRemotelyLead(item.role);
+    } else {
+      setHourlyLead(null);
+      setDayOffLead(null);
+      setVacationLead(null);
+      setRemotelyLead(null);
+    }
   };
   return (
     <>
@@ -55,28 +61,24 @@ function Read({
         <View>
           <View style={{flexDirection: 'row'}}>
             <Text style={text}>
-              {`${item.action} ${item.name} ${item.surname}`}
+              {item.role ? 'You' : `${item.name} ${item.surname}`}
             </Text>
             <Text
               style={[
                 text,
                 {
                   color:
-                    item.action === 'accepted' ||
-                    (leadAction === 'accepted' && item.id === leadActionID)
+                    item.action === 'accepted' || leadAction === 'accepted'
                       ? '#347474'
-                      : item.action === 'declined' ||
-                        (leadAction === 'declined' && item.id === leadActionID)
+                      : item.action === 'declined' || leadAction === 'declined'
                       ? '#EE9087'
                       : null,
                 },
               ]}>
-              {item.id === leadActionID ? leadAction : item.action}
+              {item.action}
             </Text>
             <Text style={text}>
-              {leadAction && item.id === leadActionID
-                ? `${item.name} ${item.surname}'s request`
-                : item.desc}
+              {item.role ? `${item.name} ${item.surname}'s request` : item.desc}
             </Text>
           </View>
           <View>
