@@ -1,12 +1,12 @@
 import React, {useCallback, useMemo, useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
 
-function DayOffBtSheet({dayOff, setDayOff}) {
-  const snapPoints = useMemo(() => ['45%', '50%', '70%', '80%', '100%'], []);
+function DayOffBtSheet({dayOff, setDayOff, dayOffLead, setLeadAction}) {
+  const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
     // console.log('handleSheetChanges', index);
@@ -14,8 +14,6 @@ function DayOffBtSheet({dayOff, setDayOff}) {
   const {
     container,
     content,
-    touchable,
-    text,
     page,
     text1,
     close,
@@ -24,6 +22,11 @@ function DayOffBtSheet({dayOff, setDayOff}) {
     comView,
     comment,
     name,
+    leadInput,
+    leadActions,
+    leadAccept,
+    leadDecline,
+    leadText,
   } = styles();
   return (
     <GestureHandlerRootView style={page}>
@@ -31,7 +34,7 @@ function DayOffBtSheet({dayOff, setDayOff}) {
         <BottomSheet
           snapPoints={snapPoints}
           ref={sheetRef}
-          index={0}
+          index={dayOffLead ? 1 : 0}
           onChange={handleSheetChanges}>
           <View style={content}>
             <TouchableOpacity style={close} onPress={() => setDayOff(!dayOff)}>
@@ -47,13 +50,38 @@ function DayOffBtSheet({dayOff, setDayOff}) {
               <Text style={name}>20 May 2022</Text>
             </View>
             <View style={comView}>
-              <Text style={employee}>Comment:</Text>
+              <Text style={employee}>
+                {dayOffLead ? 'Description:' : 'Comment:'}
+              </Text>
               <Text style={comment}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the
               </Text>
             </View>
+            {dayOffLead ? (
+              <View>
+                <TextInput style={leadInput} placeholder={'Add comment'} />
+                <View style={leadActions}>
+                  <TouchableOpacity
+                    style={leadAccept}
+                    onPress={() => {
+                      setLeadAction('accepted');
+                      setDayOff(!dayOff);
+                    }}>
+                    <Text style={leadText}>Accept</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={leadDecline}
+                    onPress={() => {
+                      setLeadAction('declined');
+                      setDayOff(!dayOff);
+                    }}>
+                    <Text style={leadText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : null}
           </View>
         </BottomSheet>
       </View>

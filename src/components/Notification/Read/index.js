@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../../assets/RootStyle';
 
@@ -8,6 +8,16 @@ function Read({
   setVacation,
   vacation,
   hourly,
+  leadActionID,
+  leadAction,
+  hourlyLead,
+  setHourlyLead,
+  remotelyLead,
+  setRemotelyLead,
+  vacationLead,
+  setVacationLead,
+  dayOffLead,
+  setDayOffLead,
   setHourly,
   remotely,
   setRemotely,
@@ -16,14 +26,19 @@ function Read({
 }) {
   const {container, text, image} = styles();
   const handlePress = item => {
+    console.log('i', item);
     if (item.type === 'Hourly leave') {
       setHourly(!hourly);
+      setHourlyLead(null);
     } else if (item.type === 'Day off') {
       setDayOff(!dayOff);
+      setDayOffLead(null);
     } else if (item.type === 'Work remotely') {
       setRemotely(!remotely);
+      setRemotelyLead(null);
     } else if (item.type === 'Vacation') {
       setVacation(!vacation);
+      setVacationLead(null);
     } else {
       alert('The type is not defined');
     }
@@ -40,18 +55,29 @@ function Read({
         <View>
           <View style={{flexDirection: 'row'}}>
             <Text style={text}>
-              {item.name} {item.surname}
+              {`${item.action} ${item.name} ${item.surname}`}
             </Text>
             <Text
               style={[
                 text,
                 {
-                  color: item.action === 'accepted' ? '#347474' : '#EE9087',
+                  color:
+                    item.action === 'accepted' ||
+                    (leadAction === 'accepted' && item.id === leadActionID)
+                      ? '#347474'
+                      : item.action === 'declined' ||
+                        (leadAction === 'declined' && item.id === leadActionID)
+                      ? '#EE9087'
+                      : null,
                 },
               ]}>
-              {item.action}
+              {item.id === leadActionID ? leadAction : item.action}
             </Text>
-            <Text style={text}>{item.desc}</Text>
+            <Text style={text}>
+              {leadAction && item.id === leadActionID
+                ? `${item.name} ${item.surname}'s request`
+                : item.desc}
+            </Text>
           </View>
           <View>
             <Text style={[text, {color: '#949494'}]}>

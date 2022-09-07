@@ -1,12 +1,13 @@
 import React, {useCallback, useMemo, useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
+import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
-function RemotelyBtSheet({remotely, setRemotely}) {
-  const snapPoints = useMemo(() => ['45%', '50%', '70%', '80%', '100%'], []);
+function RemotelyBtSheet({remotely, setRemotely, remotelyLead, setLeadAction}) {
+  const snapPoints = useMemo(() => ['45%', '60%', '70%', '80%', '100%'], []);
   const sheetRef = useRef(null);
   const handleSheetChanges = useCallback((index: number) => {
     // console.log('handleSheetChanges', index);
@@ -22,6 +23,11 @@ function RemotelyBtSheet({remotely, setRemotely}) {
     comView,
     comment,
     name,
+    leadInput,
+    leadActions,
+    leadAccept,
+    leadDecline,
+    leadText,
   } = styles();
   return (
     <GestureHandlerRootView style={page}>
@@ -29,7 +35,7 @@ function RemotelyBtSheet({remotely, setRemotely}) {
         <BottomSheet
           snapPoints={snapPoints}
           ref={sheetRef}
-          index={0}
+          index={remotelyLead ? 1 : 0}
           onChange={handleSheetChanges}>
           <View style={content}>
             <TouchableOpacity
@@ -51,13 +57,38 @@ function RemotelyBtSheet({remotely, setRemotely}) {
               <Text style={name}>13:00 - 16:00</Text>
             </View>
             <View style={comView}>
-              <Text style={employee}>Comment:</Text>
+              <Text style={employee}>
+                {remotelyLead ? 'Description:' : 'Comment:'}
+              </Text>
               <Text style={comment}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the
               </Text>
             </View>
+            {remotelyLead ? (
+              <View>
+                <TextInput style={leadInput} placeholder={'Add comment'} />
+                <View style={leadActions}>
+                  <TouchableOpacity
+                    style={leadAccept}
+                    onPress={() => {
+                      setLeadAction('accepted');
+                      setRemotely(!remotely);
+                    }}>
+                    <Text style={leadText}>Accept</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={leadDecline}
+                    onPress={() => {
+                      setLeadAction('declined');
+                      setRemotely(!remotely);
+                    }}>
+                    <Text style={leadText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : null}
           </View>
         </BottomSheet>
       </View>

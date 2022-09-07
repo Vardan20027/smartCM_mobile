@@ -17,7 +17,20 @@ const styles = () => {
       justifyContent: 'center',
       alignItems: 'center',
     },
-
+    touchable: {
+      marginTop: Sizes.size80,
+      width: Sizes.size313,
+      height: Sizes.size45,
+      backgroundColor: '#11493E',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: Sizes.size4,
+    },
+    text: {
+      fontFamily: Fonts.regular,
+      color: '#FCFCFC',
+      fontSize: Sizes.size14,
+    },
     text1: {
       fontFamily: Fonts.bold,
       fontStyle: 'normal',
@@ -75,6 +88,43 @@ const styles = () => {
       lineHeight: Sizes.size16,
       letterSpacing: 0.25,
       color: '#616062',
+    },
+    leadInput: {
+      width: Sizes.size310,
+      height: Sizes.size38,
+      fontFamily: Fonts.regular,
+      marginTop: Sizes.size18,
+      borderWidth: Sizes.size1,
+      borderColor: '#DEDEDE',
+      padding: Sizes.size10,
+      borderRadius: Sizes.size8,
+      alignSelf: 'center',
+    },
+    leadActions: {
+      flexDirection: 'row',
+      marginTop: Sizes.size40,
+      marginLeft: Sizes.size100,
+    },
+    leadAccept: {
+      backgroundColor: '#347474',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: Sizes.size101,
+      height: Sizes.size32,
+      borderRadius: Sizes.size4,
+      marginRight: Sizes.size7,
+    },
+    leadDecline: {
+      backgroundColor: '#D6453D',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: Sizes.size101,
+      height: Sizes.size32,
+      borderRadius: Sizes.size4,
+    },
+    leadText: {
+      fontFamily: Fonts.regular,
+      color: '#FCFCFC',
     },
   });
 };

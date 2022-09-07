@@ -4,6 +4,7 @@ import VictoryTasks from '../Victory/VictoryTasks';
 import {Fonts, Sizes} from '../../../assets/RootStyle';
 
 import {EventStyles} from '../../../components/Home/Events/style';
+import VictoryEvents from '../Victory/VictoryEvents';
 
 function HistoryEvents(props) {
   const DATA = [
@@ -143,12 +144,7 @@ function HistoryEvents(props) {
         }}>
         History Events
       </Text>
-      <VictoryTasks />
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <VictoryEvents />
     </View>
   );
 }

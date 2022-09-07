@@ -17,25 +17,27 @@ import HourlyBtSheet from '../../components/BottomSheet/NotificationBtSheets/Hou
 import RemotelyBtSheet from '../../components/BottomSheet/NotificationBtSheets/Work remotely';
 import NotifVacationBtSheet from '../../components/BottomSheet/NotificationBtSheets/Vacation';
 import EmptyNotifIcon from '../../assets/icons/emptyNotifIcon';
+
 const NotificationsDATA = [
   {
     id: 0,
     avatar: require('../../assets/images/notif_image.png'),
     name: 'Name',
     surname: 'Surname',
-    action: 'accepted',
-    desc: 'your request',
+    action: 'send',
+    desc: 'request',
     date: 'May 20, 2022',
     time: '12:00',
     read: false,
     type: 'Hourly leave',
+    role: 'Team-lead',
   },
   {
     id: 1,
     avatar: require('../../assets/images/notif_image1.png'),
     name: 'Name',
     surname: 'Surname',
-    action: 'declined',
+    action: 'accepted',
     desc: 'your request',
     date: 'May 20, 2022',
     time: '15:00',
@@ -47,12 +49,13 @@ const NotificationsDATA = [
     avatar: require('../../assets/images/notif_image2.png'),
     name: 'Name',
     surname: 'Surname',
-    action: 'accepted',
-    desc: 'your request',
+    action: 'send',
+    desc: 'request',
     date: 'May 20, 2022',
     time: '12:00',
     read: false,
     type: 'Day off',
+    role: 'Team-lead',
   },
   {
     id: 3,
@@ -71,7 +74,7 @@ const NotificationsDATA = [
     avatar: require('../../assets/images/notif_image4.png'),
     name: 'Name',
     surname: 'Surname',
-    action: 'declined',
+    action: 'accepted',
     desc: 'your request',
     date: 'May 20, 2022',
     time: '12:00',
@@ -83,12 +86,13 @@ const NotificationsDATA = [
     avatar: require('../../assets/images/notif_image5.png'),
     name: 'Name',
     surname: 'Surname',
-    action: 'accepted',
-    desc: 'your request',
+    action: 'send',
+    desc: 'request',
     date: 'May 20, 2022',
     time: '15:00',
     read: false,
-    type: 'Vacation',
+    type: 'Work remotely',
+    role: 'Team-lead',
   },
   {
     id: 6,
@@ -140,13 +144,32 @@ const NotificationsDATA = [
   },
 ];
 const NotificationsScreen = props => {
+  const [arr, setArr] = useState(NotificationsDATA);
+  console.log(1, arr[0]);
+  const func = el => {
+    const newArr = NotificationsDATA.map(object => {
+      if (object.id === el.leadActionID) {
+        // 👇️ change value of name property
+        return {...object, action: el.leadAction};
+      }
+      return object;
+    });
+    setArr(newArr);
+  };
+  console.log(2, arr[0]);
+
   const [focused, setFocused] = useState(1);
   const [hourly, setHourly] = useState(false);
+  const [hourlyLead, setHourlyLead] = useState();
   const [dayOff, setDayOff] = useState(false);
+  const [dayOffLead, setDayOffLead] = useState();
   const [remotely, setRemotely] = useState(false);
+  const [remotelyLead, setRemotelyLead] = useState();
   const [vacation, setVacation] = useState(false);
+  const [vacationLead, setVacationLead] = useState();
   const [i, setI] = useState(false);
-
+  const [leadAction, setLeadAction] = useState('');
+  const [leadActionID, setLeadActionID] = useState();
   const {
     container,
     text,
@@ -165,34 +188,55 @@ const NotificationsScreen = props => {
         <Unread
           item={item}
           hourly={hourly}
+          hourlyLead={hourlyLead}
           setHourly={setHourly}
+          setHourlyLead={setHourlyLead}
           vacation={vacation}
+          vacationLead={vacationLead}
           setVacation={setVacation}
+          setVacationLead={setVacationLead}
           remotely={remotely}
+          remotelyLead={remotelyLead}
           setRemotely={setRemotely}
+          setRemotelyLead={setRemotelyLead}
           dayOff={dayOff}
+          leadActionID={leadActionID}
+          leadAction={leadAction}
+          setLeadActionID={setLeadActionID}
+          dayOffLead={dayOffLead}
           setDayOff={setDayOff}
+          setDayOffLead={setDayOffLead}
         />
       );
     } else if (focused === 2 && item.read) {
       return (
         <Read
           item={item}
+          leadAction={leadAction}
           hourly={hourly}
+          hourlyLead={hourlyLead}
+          leadActionID={leadActionID}
           setHourly={setHourly}
+          setHourlyLead={setHourlyLead}
           vacation={vacation}
+          vacationLead={vacationLead}
           setVacation={setVacation}
+          setVacationLead={setVacationLead}
           remotely={remotely}
+          remotelyLead={remotelyLead}
           setRemotely={setRemotely}
+          setRemotelyLead={setRemotelyLead}
           dayOff={dayOff}
+          dayOffLead={dayOffLead}
           setDayOff={setDayOff}
+          setDayOffLead={setDayOffLead}
         />
       );
     }
   };
 
   const handleReadAll = () => {
-    NotificationsDATA.map(item => {
+    arr.map(item => {
       item.read = true;
       setI(true);
     });
@@ -207,6 +251,7 @@ const NotificationsScreen = props => {
       tabBarStyle: {display: 'flex'},
     });
   }
+
   // const ListEmptyView = ({item}) => {
   //   return (
   //     <View>
@@ -258,25 +303,46 @@ const NotificationsScreen = props => {
             </View>
           ) : null}
           <FlatList
-            data={NotificationsDATA}
+            data={arr}
             renderItem={renderItem}
             keyExtractor={item => item.id}
-            // ListEmptyComponent={}
           />
         </View>
       </View>
       <View style={btSheet}>
         {dayOff ? (
-          <DayOffBtSheet setDayOff={setDayOff} dayOff={dayOff} />
+          <DayOffBtSheet
+            setDayOff={setDayOff}
+            dayOff={dayOff}
+            dayOffLead={dayOffLead}
+            setLeadAction={setLeadAction}
+          />
         ) : null}
         {hourly ? (
-          <HourlyBtSheet setHourly={setHourly} hourly={hourly} />
+          <HourlyBtSheet
+            func={func}
+            leadActionID={leadActionID}
+            setHourly={setHourly}
+            hourly={hourly}
+            hourlyLead={hourlyLead}
+            setLeadAction={setLeadAction}
+          />
         ) : null}
         {remotely ? (
-          <RemotelyBtSheet setRemotely={setRemotely} remotely={remotely} />
+          <RemotelyBtSheet
+            setRemotely={setRemotely}
+            remotely={remotely}
+            setLeadAction={setLeadAction}
+            remotelyLead={remotelyLead}
+          />
         ) : null}
         {vacation ? (
-          <NotifVacationBtSheet setVacation={setVacation} vacation={vacation} />
+          <NotifVacationBtSheet
+            setVacation={setVacation}
+            vacation={vacation}
+            vacationLead={vacationLead}
+            setLeadAction={setLeadAction}
+          />
         ) : null}
       </View>
     </>

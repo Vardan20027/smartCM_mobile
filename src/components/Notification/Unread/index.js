@@ -10,6 +10,16 @@ function Unread({
   setVacation,
   vacation,
   hourly,
+  setHourlyLead,
+  leadActionID,
+  setLeadActionID,
+  leadAction,
+  remotelyLead,
+  setRemotelyLead,
+  vacationLead,
+  setVacationLead,
+  dayOffLead,
+  setDayOffLead,
   setHourly,
   remotely,
   setRemotely,
@@ -17,8 +27,8 @@ function Unread({
   dayOff,
 }) {
   const {container, text, image} = styles();
-
   const handlePress = item => {
+    console.log('item1', item);
     if (item.type === 'Hourly leave') {
       setHourly(!hourly);
     } else if (item.type === 'Day off') {
@@ -30,7 +40,17 @@ function Unread({
     } else {
       alert('The type is not defined');
     }
+
+    setHourlyLead(item.role);
+    setDayOffLead(item.role);
+    setVacationLead(item.role);
+    setRemotelyLead(item.role);
     item.read = true;
+
+    if (item.role === 'Team-lead') {
+      console.log(leadActionID);
+      setLeadActionID(item.id);
+    }
   };
 
   return (
@@ -51,7 +71,12 @@ function Unread({
               style={[
                 text,
                 {
-                  color: item.action === 'accepted' ? '#347474' : '#EE9087',
+                  color:
+                    item.action === 'accepted'
+                      ? '#347474'
+                      : null || item.action === 'declined'
+                      ? '#EE9087'
+                      : null,
                 },
               ]}>
               {item.action}

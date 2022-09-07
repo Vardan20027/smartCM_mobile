@@ -3,7 +3,6 @@ import Svg, {Path} from 'react-native-svg';
 import {Sizes} from '../RootStyle';
 
 function SvgComponent(props) {
-  const {iconColor, iconWidth, iconHeight, strokeWidth} = props;
   return (
     <Svg
       width={iconWidth}

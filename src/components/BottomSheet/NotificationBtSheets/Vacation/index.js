@@ -2,7 +2,7 @@ import React, {useCallback, useMemo, useRef} from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style';
+import {styles} from '../Styles/Style';
 import CloseIcon from '../../../../assets/icons/closeIcon';
 import {Sizes} from '../../../../assets/RootStyle';
 
