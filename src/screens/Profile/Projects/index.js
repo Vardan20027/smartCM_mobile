@@ -1,27 +1,26 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {ProjectsData} from '../../../assets/FakeData';
-import {Sizes} from '../../../assets/RootStyle';
 import ArrowRightNew from '../../../assets/icons/arrowRightNew';
+import * as RootNavigation from '../../../navigation/RootNavigation';
 
 function Projects(props) {
-  const {container, title, content, image} = styles();
+  const {container, title, content, image, touch, flatTitle, desc, flat} =
+    styles();
   const renderItem = ({item}) => (
     <>
       <TouchableOpacity
-        style={{
-          flexDirection: 'row',
-          width: Sizes.size310,
-          height: Sizes.size60,
-          alignItems: 'center',
+        style={touch}
+        onPress={() => {
+          RootNavigation.navigate('Project Info', {item});
         }}>
         <View>
           <Image source={item.img} style={image} />
         </View>
-        <View>
-          <Text>{item.title}</Text>
-          <Text>{item.short}</Text>
+        <View style={content}>
+          <Text style={flatTitle}>{item.title}</Text>
+          <Text style={desc}>{item.short}</Text>
         </View>
         <ArrowRightNew />
       </TouchableOpacity>
@@ -30,7 +29,7 @@ function Projects(props) {
   return (
     <View style={container}>
       <Text style={title}>Projects</Text>
-      <View>
+      <View style={flat}>
         <FlatList
           data={ProjectsData}
           renderItem={renderItem}

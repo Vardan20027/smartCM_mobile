@@ -13,6 +13,7 @@ import UpdateTask from '../screens/UpdateTask';
 import HistoryTasks from '../screens/Profile/History Tasks';
 import HistoryEvents from '../screens/Profile/History Events';
 import Projects from '../screens/Profile/Projects';
+import ProjectInfo from '../screens/Profile/Projects/Project Info';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,6 +37,7 @@ export default function TabNav() {
         <Tab.Screen name="History Tasks" component={HistoryTasks} />
         <Tab.Screen name="History Events" component={HistoryEvents} />
         <Tab.Screen name="Projects" component={Projects} />
+        <Tab.Screen name="Project Info" component={ProjectInfo} />
       </Tab.Navigator>
     </>
   );
