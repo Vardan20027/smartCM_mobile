@@ -1,10 +1,19 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Fonts, Sizes} from '../../../assets/RootStyle';
 import {EventsData} from '../../../assets/FakeData';
 import {EventStyles} from '../../../components/Home/Events/style';
 import VictoryEvents from '../Victory/VictoryEvents';
 import UnreadIcon from '../../../assets/icons/unreadIcon';
+import Calendar1Icon from '../../../assets/icons/calendar1';
+import {Input} from '../../../components/Input';
 
 function HistoryEvents(props) {
   const {container, content, data, desc, line, header} = EventStyles();
@@ -85,17 +94,42 @@ function HistoryEvents(props) {
         </View>
         <View
           style={{
-            marginTop: Sizes.size350,
-            height: '90%',
-            alignSelf: 'center',
-            paddingBottom: Sizes.size420,
+            position: 'absolute',
+            borderWidth: Sizes.size1,
+            borderColor: '#D1CDCD',
+            borderRadius: Sizes.size4,
+            paddingLeft: Sizes.size10,
+            width: Sizes.size330,
+            marginTop: Sizes.size270,
+            marginLeft: Sizes.size20,
+            flexDirection: 'row',
           }}>
-          <FlatList
-            data={EventsData}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
+          <TextInput
+            placeholder={'Search history'}
+            style={{fontFamily: Fonts.regular, width: '80%'}}
           />
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              right: Sizes.size10,
+              alignSelf: 'center',
+            }}>
+            <Calendar1Icon />
+          </TouchableOpacity>
         </View>
+      </View>
+      <View
+        style={{
+          marginTop: Sizes.size300,
+          height: '100%',
+          alignSelf: 'center',
+          paddingBottom: Sizes.size420,
+        }}>
+        <FlatList
+          data={EventsData}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );

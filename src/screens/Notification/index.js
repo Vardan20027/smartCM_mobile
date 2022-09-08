@@ -216,6 +216,7 @@ const NotificationsScreen = props => {
           hourly={hourly}
           hourlyLead={hourlyLead}
           leadActionID={leadActionID}
+          setLeadActionID={setLeadActionID}
           setHourly={setHourly}
           setHourlyLead={setHourlyLead}
           vacation={vacation}

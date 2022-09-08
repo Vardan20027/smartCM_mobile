@@ -44,8 +44,7 @@ function Unread({
 
     if (item.role) {
       setLeadActionID(item.id);
-
-      console.log('Selected id:', item.id);
+      console.log('Selected UNREAD id:', item.id);
     }
   };
 

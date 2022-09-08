@@ -12,6 +12,7 @@ function Read({
   setHourlyLead,
   setRemotelyLead,
   setVacationLead,
+  setLeadActionID,
   setDayOffLead,
   setHourly,
   remotely,
@@ -47,6 +48,10 @@ function Read({
       setDayOffLead(null);
       setVacationLead(null);
       setRemotelyLead(null);
+    }
+    if (item.role) {
+      setLeadActionID(item.id);
+      console.log('Selected READ id:', item.id);
     }
   };
   return (

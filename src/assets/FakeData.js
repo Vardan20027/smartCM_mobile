@@ -77,7 +77,7 @@ export const EventsData = [
     date: 'May 29, 2022',
     duration: '12:00 - 15:00',
     location: 'Meeting room 306',
-    color: '#EF988F',
+    color: '#92BEFA',
   },
   {
     id: 8,
@@ -97,7 +97,7 @@ export const EventsData = [
     date: 'May 27, 2022',
     duration: '12:00 - 15:00',
     location: 'Meeting room 306',
-    color: '#F4C584',
+    color: '#EF988F',
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ export const EventsData = [
     date: 'May 29, 2022',
     duration: '12:00 - 15:00',
     location: 'Meeting room 306',
-    color: '#EF988F',
+    color: '#F4C584',
   },
 ];
 export const TasksData = [
@@ -222,5 +222,151 @@ export const TasksData = [
     duration: ' 15 minute',
     project: 'Bob AI',
     color: '#38A98E',
+  },
+];
+export const ProjectsData = [
+  {
+    id: 0,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 1,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image1.png'),
+  },
+  {
+    id: 2,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 3,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image2.png'),
+  },
+  {
+    id: 4,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image3.png'),
+  },
+  {
+    id: 5,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image4.png'),
+  },
+  {
+    id: 6,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image5.png'),
+  },
+  {
+    id: 7,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image6.png'),
+  },
+  {
+    id: 8,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image3.png'),
+  },
+  {
+    id: 9,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image6.png'),
+  },
+  {
+    id: 10,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image2.png'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
+  },
+  {
+    id: 11,
+    title: 'Project name',
+    short: 'Some description here about project ',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book ",
+    img: require('../assets/images/project_image.jpg'),
   },
 ];
