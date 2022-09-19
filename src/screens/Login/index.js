@@ -90,7 +90,7 @@ const LoginScreen = ({navigation}) => {
         <TouchableOpacity
           style={button}
           onPress={() => {
-            navigation.navigate('Tab');
+            navigation.navigate('Verification');
           }}>
           <Text style={butText}>Login</Text>
         </TouchableOpacity>

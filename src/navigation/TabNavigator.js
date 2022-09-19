@@ -14,6 +14,7 @@ import HistoryTasks from '../screens/Profile/History Tasks';
 import HistoryEvents from '../screens/Profile/History Events';
 import Projects from '../screens/Profile/Projects';
 import ProjectInfo from '../screens/Profile/Projects/Project Info';
+import Verification from '../screens/Verification';
 
 const Tab = createBottomTabNavigator();
 
