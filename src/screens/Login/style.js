@@ -38,7 +38,6 @@ const styles = () => {
       fontFamily: Fonts.regular,
       width: Sizes.size250,
       height: Sizes.size45,
-      marginLeft: Sizes.size10,
     },
     button: {
       marginTop: Sizes.size10,
@@ -58,6 +57,18 @@ const styles = () => {
       fontFamily: Fonts.regular,
       color: '#FCFCFC',
       fontSize: Sizes.size14,
+    },
+    socialLog: {
+      flexDirection: 'row',
+      padding: Sizes.size5,
+      alignItems: 'center',
+    },
+    googleSt: {
+      padding: Sizes.size5,
+      marginRight: Sizes.size5,
+    },
+    fbSt: {
+      padding: Sizes.size5,
     },
   });
 };
